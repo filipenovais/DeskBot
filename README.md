@@ -12,6 +12,9 @@ That's it.
 
 Minimal dependencies, lightweight stack, modular and free. Easy setup on Windows and Linux with a settings menu for hotkeys, microphone, and API providers. Fork it, tweak it, make it your own.
 
+![DeskBot](DeskBot.gif)
+
+
 ## Why DeskBot?
 
 - **Not locked into one provider** — Swap LLMs via base URL: Groq, OpenAI, Anthropic, Ollama
