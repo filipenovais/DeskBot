@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeskBot - Setup Guide</title>
+    <style>
+        :root {
+            --bg-deep: #1a1218;
+            --bg-mid: #2a1f28;
+            --bg-card: #3d2d38;
+            --bg-light: #fcf8f8;
+            --crimson: #dc3545;
+            --burgundy: #8b2942;
+            --gold: #f0c040;
+            --text-bright: #f8f0f0;
+            --text-dim: #a08898;
+            --border: #4d3d48;
+            --status-ready: #50c878;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: var(--bg-deep);
+            color: var(--text-bright);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: var(--crimson);
+            font-size: 2rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .step-number {
+            background: var(--crimson);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            color: var(--text-bright);
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .step-content {
+            color: var(--text-dim);
+            padding-left: 44px;
+        }
+
+        .substep {
+            background: var(--bg-mid);
+            border-left: 3px solid var(--burgundy);
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .substep-title {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .link {
+            color: var(--crimson);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--crimson);
+            transition: color 0.2s;
+        }
+
+        .link:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        code {
+            background: var(--bg-deep);
+            color: var(--gold);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: var(--bg-deep);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 12px 0;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            background: none;
+            padding: 0;
+            display: block;
+            white-space: pre;
+        }
+
+        .comment {
+            color: var(--text-dim);
+        }
+
+        .optional {
+            background: var(--burgundy);
+            color: var(--text-bright);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            text-transform: uppercase;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        .note {
+            background: linear-gradient(90deg, var(--burgundy), transparent);
+            border-left: 3px solid var(--crimson);
+            padding: 12px 16px;
+            margin: 16px 0;
+            border-radius: 0 6px 6px 0;
+            color: var(--text-bright);
+        }
+
+        .note strong {
+            color: var(--gold);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--crimson);
+            text-decoration: none;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .status-ready { background: var(--status-ready); }
+        .status-offline { background: var(--text-dim); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DeskBot Setup</h1>
+        <p class="subtitle">Get your voice-activated AI assistant running in minutes</p>
+
+        <!-- Step 0: Prerequisites -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">0</div>
+                <span class="step-title">Prerequisites</span>
+            </div>
+            <div class="step-content">
+                <p>Make sure you have the following installed:</p>
+
+                <div class="substep">
+                    <div class="substep-title">Git</div>
+                    <p>For cloning the repository and running bash scripts on Windows.</p>
+                    <p><a class="link" href="https://git-scm.com/downloads" target="_blank">Download Git</a></p>
+                </div>
+
+                <div class="substep">
+                    <div class="substep-title">Docker Desktop</div>
+                    <p>Required for running the database service container.</p>
+                    <p><a class="link" href="https://www.docker.com/products/docker-desktop/" target="_blank">Download Docker Desktop</a></p>
+                </div>
+
+                <div class="substep">
+                    <div class="substep-title">Conda (Miniconda or Anaconda)</div>
+                    <p>Python environment manager for dependencies.</p>
+                    <p>
+                        <a class="link" href="https://docs.conda.io/en/latest/miniconda.html" target="_blank">Download Miniconda</a> (recommended) or
+                        <a class="link" href="https://www.anaconda.com/download" target="_blank">Download Anaconda</a>
+                    </p>
+                </div>
+
+                <div class="substep">
+                    <div class="substep-title">Groq API Key <span class="optional">Optional</span></div>
+                    <p>Get free API access for LLM, STT (Whisper), and TTS services.</p>
+                    <p><a class="link" href="https://console.groq.com/" target="_blank">Get Groq API Key (Free)</a></p>
+                    <p style="margin-top: 8px; color: var(--text-dim); font-size: 0.9rem;">
+                        Alternatively, run fully local with Ollama (no API key needed).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Install -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <span class="step-title">Run the Install Script</span>
+            </div>
+            <div class="step-content">
+                <p>Open your terminal and navigate to the project folder:</p>
+                <div class="substep">
+                    <div class="substep-title">Windows (Git Bash) or Linux/macOS (Terminal)</div>
+                    <div class="code-block">
+                        <code><span class="comment"># Make the script executable</span>
+chmod +x install.sh
+
+<span class="comment"># Run the installer</span>
+./install.sh</code>
+                    </div>
+                </div>
+
+                <div class="note">
+                    <strong>Want to run fully local?</strong> Add the <code>--ollama</code> flag to also start the Ollama service:
+                    <div class="code-block" style="margin-top: 8px; margin-bottom: 0;">
+                        <code>./install.sh --ollama</code>
+                    </div>
+                </div>
+
+                <p style="margin-top: 12px;">The script will:</p>
+                <ul>
+                    <li>Check for required dependencies</li>
+                    <li>Start the database service (Docker)</li>
+                    <li>Optionally start Ollama service</li>
+                    <li>Create the <code>deskbot_env</code> conda environment</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Step 2: Run -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <span class="step-title">Start DeskBot</span>
+            </div>
+            <div class="step-content">
+                <p>Activate the environment and run:</p>
+                <div class="code-block">
+                    <code>conda activate deskbot_env
+python run.py</code>
+                </div>
+                <p>DeskBot will appear in your system tray. The conversations window opens automatically on startup.</p>
+            </div>
+        </div>
+
+        <!-- Step 3: Configure -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <span class="step-title">Configure Services</span>
+            </div>
+            <div class="step-content">
+                <p>Right-click the tray icon and select <strong>Settings</strong> to configure:</p>
+                <ul>
+                    <li><strong>LLM Provider</strong> - Choose Groq, OpenAI, Anthropic, or Ollama</li>
+                    <li><strong>API Base URL</strong> - Set the endpoint for your provider</li>
+                    <li><strong>API Key</strong> - Enter your API key (not needed for Ollama)</li>
+                    <li><strong>STT/TTS</strong> - Configure speech services</li>
+                    <li><strong>Hotkeys</strong> - Customize keyboard shortcuts</li>
+                    <li><strong>Microphone</strong> - Select your input device</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Service Status:</strong> Check the colored dots in the conversations window:
+                    <br><br>
+                    <span class="status-dot status-ready"></span> Service connected
+                    <span class="status-dot status-offline" style="margin-left: 16px;"></span> Service offline
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Use -->
+        <div class="step">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <span class="step-title">Start Using</span>
+            </div>
+            <div class="step-content">
+                <p>Default hotkeys:</p>
+                <ul>
+                    <li><code>Shift+F12</code> - Hold to talk (push-to-talk)</li>
+                    <li><code>Shift+F2</code> - Create & open new conversation</li>
+                    <li><code>Shift+F3</code> - Open current conversation</li>
+                    <li><code>Shift+F11</code> - Create new conversation</li>
+                    <li><code>Shift+F1</code> - Open conversations window</li>
+                </ul>
+                <p style="margin-top: 12px;">
+                    All conversations are stored locally in the Docker database container.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>DeskBot &mdash; <a href="https://github.com/" target="_blank">View on GitHub</a></p>
+        </div>
+    </div>
+</body>
+</html>

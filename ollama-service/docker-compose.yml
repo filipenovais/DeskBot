@@ -1,0 +1,20 @@
+# Ollama Service - Local LLM serving
+# Run from project root: cd ollama-service && docker-compose up -d --build
+# API available at: http://localhost:11434/v1/
+
+services:
+  ollama-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pa-ollama-service
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    restart: unless-stopped
+
+volumes:
+  ollama-models:

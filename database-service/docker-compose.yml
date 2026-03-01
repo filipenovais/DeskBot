@@ -1,0 +1,19 @@
+# Database Service - Deploy on client machine
+# Run from project root: cd database-service && docker-compose up -d --build
+
+services:
+  database-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pa-database-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - pa-data:/app/data
+    env_file:
+      - ../.env
+    restart: unless-stopped
+
+volumes:
+  pa-data:
